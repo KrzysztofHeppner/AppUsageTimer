@@ -1,0 +1,38 @@
+﻿<Window x:Class="AppUsageTimer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppUsageTimer"
+        mc:Ignorable="d"
+        Title="Process Time Tracker" Height="550" Width="650"
+        Loaded="Window_Loaded"
+        >
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <Label Content="Filter:" VerticalAlignment="Center"/>
+            <TextBox Name="FilterTextBox"
+                     Width="200"
+                     VerticalAlignment="Center"
+                     TextChanged="FilterTextBox_TextChanged"
+                     Margin="5,0,0,0" />
+        </StackPanel>
+
+        <ListView Name="ProcessListView"
+                  Grid.Row="1"
+                  ItemsSource="{Binding ProcessEntriesView}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Process Name" DisplayMemberBinding="{Binding ProcessName}" Width="200"/>
+                    <GridViewColumn Header="Total Time" DisplayMemberBinding="{Binding FormattedTotalTime}" Width="150"/>
+                    <GridViewColumn Header="Session Time" DisplayMemberBinding="{Binding FormattedSessionTime}" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
